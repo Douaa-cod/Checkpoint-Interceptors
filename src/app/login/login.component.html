@@ -1,0 +1,39 @@
+<form #loginForm="ngForm">
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email"
+           email required
+           ngModel
+           #mailInput="ngModel"
+           name="email"
+           id="email"
+           class="form-control"
+    >
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="alert alert-danger" *ngIf="mailInput.dirty && mailInput.invalid">
+    Verify your email !
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password"
+           required
+           minlength="4"
+           ngModel
+           name="password"
+           #pwdInput="ngModel"
+           id="password"
+           class="form-control"
+    >
+  </div>
+  <div class="alert alert-danger" *ngIf="pwdInput.dirty && pwdInput.invalid">
+    the password must have 4 caracteres in minimum.
+  </div>
+  <button type="submit"
+          [disabled] = "loginForm.invalid"
+          class="btn btn-primary"
+          (click)="login(loginForm)"
+  >
+    Log In
+  </button>
+</form>
